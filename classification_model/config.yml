@@ -6,3 +6,281 @@ training_data_file: train.csv
 test_data_file: test.csv
 
 # Variables
+target: loan_status
+
+pipeline_name: classification_model
+pipeline_save_file: classification_model_output_v
+
+features:
+  - acc_now_delinq
+  - addr_state
+  - all_util
+  - annual_inc
+  - annual_inc_joint
+  - application_type
+  - collection_recovery_fee
+  - collections_12_mths_ex_med
+  - delinq_2yrs
+  - dti
+  - dti_joint
+  - earliest_cr_line
+  - emp_length
+  - emp_title
+  - funded_amnt
+  - funded_amnt_inv
+  - grade
+  - home_ownership
+  - il_util
+  - initial_list_status
+  - inq_fi
+  - inq_last_12m
+  - inq_last_6mths
+  - installment
+  - int_rate
+  - issue_d
+  - last_credit_pull_d
+  - last_pymnt_amnt
+  - last_pymnt_d
+  - loan_amnt
+  - loan_status
+  - max_bal_bc
+  - mths_since_last_delinq
+  - mths_since_last_major_derog
+  - mths_since_last_record
+  - mths_since_rcnt_il
+  - next_pymnt_d
+  - open_acc
+  - open_acc_6m
+  - open_il_12m
+  - open_il_24m
+  - open_rv_12m
+  - open_rv_24m
+  - out_prncp
+  - out_prncp_inv
+  - pub_rec
+  - purpose
+  - pymnt_plan
+  - recoveries
+  - revol_bal
+  - revol_util
+  - sub_grade
+  - term
+  - title
+  - tot_coll_amt
+  - tot_cur_bal
+  - total_acc
+  - total_bal_il
+  - total_cu_tl
+  - total_pymnt
+  - total_pymnt_inv
+  - total_rec_int
+  - total_rec_late_fee
+  - total_rec_prncp
+  - total_rev_hi_lim
+  - verification_status
+  - verification_status_joint
+  - zip_code
+
+  # Numerical variables with NA in train set
+numerical_vars_with_na:
+  - dti
+  - inq_last_6mths
+  - mths_since_last_delinq
+  - mths_since_last_record
+  - revol_util
+  - mths_since_last_major_derog
+  - annual_inc_joint
+  - dti_joint
+  - open_acc_6m
+  - open_il_12m
+  - open_il_24m
+  - mths_since_rcnt_il
+  - total_bal_il
+  - il_util
+  - open_rv_12m
+  - max_bal_bc
+  - all_util
+  - inq_fi
+  - total_cu_tl
+  - inq_last_12m
+
+categorical_vars_with_na_frequent:
+  - emp_length
+  - zip_code
+
+categorical_vars_with_na_missing:
+  - verification_status_joint
+
+repl_vars_with_median:
+  - dti
+  - inq_last_6mths
+  - mths_since_last_delinq
+  - mths_since_last_major_derog
+  - annual_inc_joint
+  - all_util
+
+repl_vars_with_mean:
+  - mths_since_last_record
+  - revol_util
+  - dti_joint
+  - open_acc_6m
+  - open_il_12m
+  - open_il_24m
+  - mths_since_rcnt_il
+  - total_bal_il
+  - il_util
+  - open_rv_12m
+  - max_bal_bc
+  - inq_fi
+  - total_cu_tl
+  - inq_last_12m
+
+log_transformed_vars:
+  - total_acc
+  - int_rate
+
+yeo_johnson_transformed_vars:
+  - total_rev_hi_lim
+  - open_acc
+  - mths_since_rcnt_il
+  - mths_since_last_delinq
+  - il_util
+  - tot_cur_bal
+  - total_pymnt
+  - total_bal_il
+  - revol_bal
+  - mths_since_last_major_derog
+  - total_rec_int
+  - max_bal_bc
+
+numericals_to_bin:
+  - annual_inc
+  - annual_inc_joint
+  - pub_rec
+  - mths_since_last_record
+  - delinq_2yrs
+  - open_il_24m
+  - open_rv_12m
+  - tot_coll_amt
+  - inq_fi
+  - recoveries
+  - inq_last_12m
+  - total_cu_tl
+  - total_rec_late_fee
+  - dti
+  - dti_joint
+  - out_prncp
+
+mapping_vars:
+  - emp_length
+
+emp_length_mappings:
+  10+ years: 10
+  2 years: 2
+  < 1 year: 0
+  3 years: 3
+  1 year: 1
+  5 years: 5
+  4 years: 4
+  6 years: 6
+  8 years: 8
+  9 years: 9
+  7 years: 7
+
+numerical_vars:
+  - loan_amnt
+  - int_rate
+  - annual_inc
+  - dti
+  - delinq_2yrs
+  - inq_last_6mths
+  - mths_since_last_delinq
+  - mths_since_last_record
+  - open_acc
+  - pub_rec
+  - revol_bal
+  - revol_util
+  - total_acc
+  - out_prncp
+  - total_pymnt
+  - total_rec_int
+  - total_rec_late_fee
+  - recoveries
+  - last_pymnt_amnt
+  - collections_12_mths_ex_med
+  - mths_since_last_major_derog
+  - annual_inc_joint
+  - dti_joint
+  - acc_now_delinq
+  - tot_coll_amt
+  - tot_cur_bal
+  - open_acc_6m
+  - open_il_12m
+  - open_il_24m
+  - mths_since_rcnt_il
+  - total_bal_il
+  - il_util
+  - open_rv_12m
+  - max_bal_bc
+  - all_util
+  - total_rev_hi_lim
+  - inq_fi
+  - total_cu_tl
+  - inq_last_12m
+
+continuous_vars:
+  - loan_amnt
+  - int_rate
+  - annual_inc
+  - dti
+  - delinq_2yrs
+  - mths_since_last_delinq
+  - mths_since_last_record
+  - open_acc
+  - pub_rec
+  - revol_bal
+  - revol_util
+  - total_acc
+  - out_prncp
+  - total_pymnt
+  - total_rec_int
+  - total_rec_late_fee
+  - recoveries
+  - last_pymnt_amnt
+  - mths_since_last_major_derog
+  - annual_inc_joint
+  - dti_joint
+  - tot_coll_amt
+  - tot_cur_bal
+  - open_il_24m
+  - mths_since_rcnt_il
+  - total_bal_il
+  - il_util
+  - open_rv_12m
+  - max_bal_bc
+  - all_util
+  - total_rev_hi_lim
+  - inq_fi
+  - total_cu_tl
+  - inq_last_12m
+ 
+discrete_vars:
+  - inq_last_6mths
+  - collections_12_mths_ex_med
+  - acc_now_delinq
+  - open_acc_6m
+  - open_il_12m
+ 
+categorical_vars:
+  - term
+  - grade
+  - emp_length
+  - home_ownership
+  - verification_status
+  - purpose
+  - zip_code
+  - addr_state
+  - initial_list_status
+  - application_type
+  - verification_status_joint
+  
