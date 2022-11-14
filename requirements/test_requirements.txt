@@ -1,0 +1,11 @@
+# Add packages from requirements.txt
+-r requirements.txt
+
+# testing requirements
+pytest>=7.2.0,<7.3.0
+
+# repo maintenance tooling
+black>=22.10.0,<23.0.0
+flake8>=5.0.4,<5.1.0
+mypy==0.991
+isort==5.10.1,<5.12.0
