@@ -153,7 +153,7 @@ yeo_johnson_transformed_vars:
   - total_rec_int
   - max_bal_bc
 
-numericals_to_bin:
+numerical_vars_to_bin:
   - annual_inc
   - annual_inc_joint
   - pub_rec
@@ -283,4 +283,3 @@ categorical_vars:
   - initial_list_status
   - application_type
   - verification_status_joint
-  
