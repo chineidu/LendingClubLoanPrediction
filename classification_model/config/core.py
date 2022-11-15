@@ -1,3 +1,5 @@
+"""This module is used to parse and convert the YAML configuration to Python code."""
+
 from pathlib import Path
 import typing as tp
 
