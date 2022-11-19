@@ -6,6 +6,8 @@ import typing as tp
 from pydantic import BaseModel
 from strictyaml import YAML, load
 
+
+
 import classification_model
 
 # Project Directories
@@ -13,8 +15,7 @@ PACKAGE_ROOT = Path(classification_model.__file__).resolve().parent
 ROOT = PACKAGE_ROOT.parent
 CONFIG_FILE_PATH = PACKAGE_ROOT / "config.yml"
 DATASET_DIR = PACKAGE_ROOT / "datasets"
-TRAINED_MODEL_DIR = PACKAGE_ROOT / "trained_model"
-
+TRAINED_MODEL_DIR = PACKAGE_ROOT / "trained_models"
 
 class AppConfig(BaseModel):
     """
@@ -32,8 +33,13 @@ class ModelConfig(BaseModel):
     All configuration relevant to model training and feature engineering.
     """
 
+    csv_format: str
+    test_size: float
+    random_state: int
     target: str
     features: tp.List[str]
+    num_vars_to_drop: tp.List[str]
+    cat_vars_to_drop: tp.List[str]
     numerical_vars_with_na: tp.List[str]
     categorical_vars_with_na_frequent: tp.List[str]
     categorical_vars_with_na_missing: tp.List[str]
@@ -43,7 +49,7 @@ class ModelConfig(BaseModel):
     yeo_johnson_transformed_vars: tp.List[str]
     numerical_vars_to_bin: tp.List[str]
     mapping_vars: tp.List[str]
-    emp_length_mappings: tp.Dict[str, int]
+    emp_length_mappings: tp.Dict[str, str]
     numerical_vars: tp.List[str]
     discrete_vars: tp.List[str]
     categorical_vars: tp.List[str]
@@ -58,7 +64,7 @@ class Config(BaseModel):
 
 def find_config_file() -> Path:
     """Locate the configuration file.
-    
+
     Params:
     -------
     None
@@ -73,7 +79,7 @@ def find_config_file() -> Path:
 
 def fetch_config_from_yaml(cfg_path: Path = None) -> YAML:
     """Parse and load YAML containing the package configuration.
-    
+
     Params:
     -------
     cfg_path (Path): The configuration path.
@@ -96,7 +102,7 @@ def fetch_config_from_yaml(cfg_path: Path = None) -> YAML:
 
 def create_and_validate_config(parsed_config: YAML = None) -> Config:
     """Run validation on config values.
-    
+
     Params:
     -------
     parsed_config (YAML): The YAML file containing the package configuraton.
@@ -115,4 +121,6 @@ def create_and_validate_config(parsed_config: YAML = None) -> Config:
     )
 
     return _config
+
+
 config = create_and_validate_config()

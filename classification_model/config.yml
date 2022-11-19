@@ -4,12 +4,19 @@ package_name: classification_model
 # Data Files
 training_data_file: train.csv
 test_data_file: test.csv
+csv_format: csv
+
+# Set train/test split
+test_size: 0.1
+
+# Set the random seed
+random_state: 123
 
 # Variables
-target: loan_status
-
 pipeline_name: classification_model
 pipeline_save_file: classification_model_output_v
+
+target: loan_status
 
 features:
   - acc_now_delinq
@@ -63,28 +70,53 @@ features:
   - verification_status_joint
   - zip_code
 
-  # Numerical variables with NA in train set
+num_vars_to_drop:
+  - collection_recovery_fee
+  - funded_amnt
+  - funded_amnt_inv
+  - id
+  - installment
+  - open_rv_24m
+  - out_prncp_inv
+  - total_pymnt_inv
+  - total_rec_prncp
+
+cat_vars_to_drop:
+  - desc
+  - earliest_cr_line
+  - emp_title
+  - issue_d
+  - last_credit_pull_d
+  - last_pymnt_d
+  - member_id
+  - next_pymnt_d
+  - policy_code
+  - pymnt_plan
+  - sub_grade
+  - title
+
+# Numerical variables with NA in train set
 numerical_vars_with_na:
-  - dti
-  - inq_last_6mths
-  - mths_since_last_delinq
-  - mths_since_last_record
-  - revol_util
-  - mths_since_last_major_derog
+  - all_util
   - annual_inc_joint
+  - dti
   - dti_joint
+  - il_util
+  - inq_fi
+  - inq_last_12m
+  - inq_last_6mths
+  - max_bal_bc
+  - mths_since_last_delinq
+  - mths_since_last_major_derog
+  - mths_since_last_record
+  - mths_since_rcnt_il
   - open_acc_6m
   - open_il_12m
   - open_il_24m
-  - mths_since_rcnt_il
-  - total_bal_il
-  - il_util
   - open_rv_12m
-  - max_bal_bc
-  - all_util
-  - inq_fi
+  - revol_util
+  - total_bal_il
   - total_cu_tl
-  - inq_last_12m
 
 categorical_vars_with_na_frequent:
   - emp_length
@@ -94,64 +126,65 @@ categorical_vars_with_na_missing:
   - verification_status_joint
 
 repl_vars_with_median:
+  - all_util
+  - annual_inc_joint
   - dti
   - inq_last_6mths
   - mths_since_last_delinq
   - mths_since_last_major_derog
-  - annual_inc_joint
-  - all_util
 
 repl_vars_with_mean:
-  - mths_since_last_record
-  - revol_util
   - dti_joint
+  - il_util
+  - inq_fi
+  - inq_last_12m
+  - max_bal_bc
+  - mths_since_last_record
+  - mths_since_rcnt_il
   - open_acc_6m
   - open_il_12m
   - open_il_24m
-  - mths_since_rcnt_il
-  - total_bal_il
-  - il_util
   - open_rv_12m
-  - max_bal_bc
-  - inq_fi
+  - revol_util
+  - total_bal_il
   - total_cu_tl
-  - inq_last_12m
 
 log_transformed_vars:
-  - total_acc
   - int_rate
+  - total_acc
 
 yeo_johnson_transformed_vars:
-  - total_rev_hi_lim
-  - open_acc
-  - mths_since_rcnt_il
-  - mths_since_last_delinq
   - il_util
-  - tot_cur_bal
-  - total_pymnt
-  - total_bal_il
-  - revol_bal
-  - mths_since_last_major_derog
-  - total_rec_int
+  - last_pymnt_amnt
   - max_bal_bc
+  - mths_since_last_delinq
+  - mths_since_last_major_derog
+  - mths_since_rcnt_il
+  - open_acc
+  - revol_bal
+  - tot_cur_bal
+  - total_bal_il
+  - total_pymnt
+  - total_rec_int
+  - total_rev_hi_lim
 
 numerical_vars_to_bin:
   - annual_inc
   - annual_inc_joint
-  - pub_rec
-  - mths_since_last_record
   - delinq_2yrs
-  - open_il_24m
-  - open_rv_12m
-  - tot_coll_amt
-  - inq_fi
-  - recoveries
-  - inq_last_12m
-  - total_cu_tl
-  - total_rec_late_fee
   - dti
   - dti_joint
+  - inq_fi
+  - inq_last_12m
+  - mths_since_last_record
+  - open_il_24m
+  - open_rv_12m
   - out_prncp
+  - pub_rec
+  - recoveries
+  - tot_coll_amt
+  - total_cu_tl
+  - total_rec_late_fee
 
 mapping_vars:
   - emp_length
@@ -170,98 +203,98 @@ emp_length_mappings:
   7 years: 7
 
 numerical_vars:
-  - loan_amnt
-  - int_rate
-  - annual_inc
-  - dti
-  - delinq_2yrs
-  - inq_last_6mths
-  - mths_since_last_delinq
-  - mths_since_last_record
-  - open_acc
-  - pub_rec
-  - revol_bal
-  - revol_util
-  - total_acc
-  - out_prncp
-  - total_pymnt
-  - total_rec_int
-  - total_rec_late_fee
-  - recoveries
-  - last_pymnt_amnt
-  - collections_12_mths_ex_med
-  - mths_since_last_major_derog
-  - annual_inc_joint
-  - dti_joint
   - acc_now_delinq
-  - tot_coll_amt
-  - tot_cur_bal
+  - all_util
+  - annual_inc
+  - annual_inc_joint
+  - collections_12_mths_ex_med
+  - delinq_2yrs
+  - dti
+  - dti_joint
+  - il_util
+  - inq_fi
+  - inq_last_12m
+  - inq_last_6mths
+  - int_rate
+  - last_pymnt_amnt
+  - loan_amnt
+  - max_bal_bc
+  - mths_since_last_delinq
+  - mths_since_last_major_derog
+  - mths_since_last_record
+  - mths_since_rcnt_il
+  - open_acc
   - open_acc_6m
   - open_il_12m
   - open_il_24m
-  - mths_since_rcnt_il
-  - total_bal_il
-  - il_util
   - open_rv_12m
-  - max_bal_bc
-  - all_util
-  - total_rev_hi_lim
-  - inq_fi
-  - total_cu_tl
-  - inq_last_12m
-
-continuous_vars:
-  - loan_amnt
-  - int_rate
-  - annual_inc
-  - dti
-  - delinq_2yrs
-  - mths_since_last_delinq
-  - mths_since_last_record
-  - open_acc
+  - out_prncp
   - pub_rec
+  - recoveries
   - revol_bal
   - revol_util
+  - tot_coll_amt
+  - tot_cur_bal
   - total_acc
-  - out_prncp
+  - total_bal_il
+  - total_cu_tl
   - total_pymnt
   - total_rec_int
   - total_rec_late_fee
-  - recoveries
-  - last_pymnt_amnt
-  - mths_since_last_major_derog
+  - total_rev_hi_lim
+
+continuous_vars:
+  - all_util
+  - annual_inc
   - annual_inc_joint
+  - delinq_2yrs
+  - dti
   - dti_joint
+  - il_util
+  - inq_fi
+  - inq_last_12m
+  - int_rate
+  - last_pymnt_amnt
+  - loan_amnt
+  - max_bal_bc
+  - mths_since_last_delinq
+  - mths_since_last_major_derog
+  - mths_since_last_record
+  - mths_since_rcnt_il
+  - open_acc
+  - open_il_24m
+  - open_rv_12m
+  - out_prncp
+  - pub_rec
+  - recoveries
+  - revol_bal
+  - revol_util
   - tot_coll_amt
   - tot_cur_bal
-  - open_il_24m
-  - mths_since_rcnt_il
+  - total_acc
   - total_bal_il
-  - il_util
-  - open_rv_12m
-  - max_bal_bc
-  - all_util
-  - total_rev_hi_lim
-  - inq_fi
   - total_cu_tl
-  - inq_last_12m
+  - total_pymnt
+  - total_rec_int
+  - total_rec_late_fee
+  - total_rev_hi_lim
  
 discrete_vars:
-  - inq_last_6mths
-  - collections_12_mths_ex_med
   - acc_now_delinq
+  - collections_12_mths_ex_med
+  - inq_last_6mths
   - open_acc_6m
   - open_il_12m
  
 categorical_vars:
-  - term
-  - grade
-  - emp_length
-  - home_ownership
-  - verification_status
-  - purpose
-  - zip_code
   - addr_state
-  - initial_list_status
   - application_type
+  - emp_length
+  - grade
+  - home_ownership
+  - initial_list_status
+  - purpose
+  - term
+  - verification_status
   - verification_status_joint
+  - zip_code
