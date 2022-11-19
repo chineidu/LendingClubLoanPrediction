@@ -11,7 +11,7 @@ from strictyaml import YAML, load
 import classification_model
 
 # Project Directories
-PACKAGE_ROOT = Path(classification_model.__file__).resolve().parent
+PACKAGE_ROOT = Path(classification_model.__file__).absolute().parent
 ROOT = PACKAGE_ROOT.parent
 CONFIG_FILE_PATH = PACKAGE_ROOT / "config.yml"
 DATASET_DIR = PACKAGE_ROOT / "datasets"
