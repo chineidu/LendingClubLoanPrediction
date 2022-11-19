@@ -1,5 +1,5 @@
 env
 sample.py
-*.csv
+train.csv
 .DS_Store
 __pycache__
