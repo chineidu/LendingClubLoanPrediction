@@ -119,4 +119,3 @@ logistic_pipe = Pipeline(
         ),
     ]
 )
-logistic_pipe
