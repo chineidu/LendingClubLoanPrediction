@@ -42,7 +42,6 @@ class ModelConfig(BaseModel):
     cat_vars_to_drop: tp.List[str]
     numerical_vars_with_na: tp.List[str]
     categorical_vars_with_na_frequent: tp.List[str]
-    categorical_vars_with_na_missing: tp.List[str]
     repl_vars_with_median: tp.List[str]
     repl_vars_with_mean: tp.List[str]
     log_transformed_vars: tp.List[str]
@@ -51,7 +50,9 @@ class ModelConfig(BaseModel):
     mapping_vars: tp.List[str]
     emp_length_mappings: tp.Dict[str, str]
     numerical_vars: tp.List[str]
+    continuous_vars: tp.List[str]
     discrete_vars: tp.List[str]
+    var_with_rare_labels: tp.List[str]
     categorical_vars: tp.List[str]
 
 

@@ -44,14 +44,6 @@ logistic_pipe = Pipeline(
                 variables=config.model_config.repl_vars_with_mean,
             ),
         ),
-        # Impute categorical variables with string missing
-        (
-            "missing_imputation",
-            CategoricalImputer(
-                imputation_method="missing",
-                variables=config.model_config.categorical_vars_with_na_missing,
-            ),
-        ),
         (
             "frequent_imputation",
             CategoricalImputer(
@@ -68,7 +60,6 @@ logistic_pipe = Pipeline(
             "yeo_johnson_transform",
             YeoJohnsonTransformer(
                 variables=config.model_config.yeo_johnson_transformed_vars
-                + config.model_config.numerical_vars_to_bin
             ),
         ),
         # ========== DISCRETIZE NUMERICAL VARIABLES ==========
@@ -94,8 +85,7 @@ logistic_pipe = Pipeline(
             RareLabelEncoder(
                 tol=0.05,
                 n_categories=5,
-                variables=config.model_config.categorical_vars
-                + config.model_config.discrete_vars,
+                variables=config.model_config.var_with_rare_labels,
             ),
         ),
         # ========== ENCODE CATEGORICAL VARIABLES ==========
