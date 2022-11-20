@@ -12,6 +12,9 @@ test_size: 0.1
 # Set the random seed
 random_state: 123
 
+# Threshold for NaN
+na_thresh: 0
+
 # Variables
 pipeline_name: classification_model
 pipeline_save_file: classification_model_output_v
