@@ -36,6 +36,7 @@ class ModelConfig(BaseModel):
     csv_format: str
     test_size: float
     random_state: int
+    na_thresh: int
     target: str
     features: tp.List[str]
     num_vars_to_drop: tp.List[str]
