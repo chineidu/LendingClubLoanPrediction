@@ -5,7 +5,7 @@ import pandas as pd
 from classification_model.config.core import config
 from classification_model.processing.validate import validate_inputs
 from classification_model.processing.data_manager import load_pipeline
-from classification_model.config.core import config
+from classification_model.processing.data_manager import load_data
 from classification_model import __version__ as _version
 
 # Builtin modules/packages
@@ -49,3 +49,8 @@ def make_predictions(*, input_data: pd.DataFrame) -> tp.Dict:
             "errors": errors,
         }
     return result
+
+
+if __name__ == "__main__":
+    test_data = load_data(filepath=config.app_config.test_data_file)
+    result = make_predictions(input_data=test_data)

@@ -105,7 +105,7 @@ logistic_pipe = Pipeline(
         # ========== LOGISTIC MODEL ==========
         (
             "log_model",
-            LogisticRegression(),
+            LogisticRegression(random_state=config.model_config.random_state),
         ),
     ]
 )

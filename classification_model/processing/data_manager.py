@@ -28,7 +28,7 @@ def load_data(
     sheet_name: Union[str, int, None], default=0
         The name of the excel sheet.
     delimiter: Union[str, None], default=None
-        The delimiter to use. 
+        The delimiter to use.
     low_memory : bool, default=True
 
     Returns:
@@ -57,16 +57,15 @@ def load_data(
         data[config.model_config.target] = data[config.model_config.target].apply(
             lambda status: 1 if status in default_list else 0
         )
+        # Drop unnecessary variables
+        data.drop(
+            columns=config.model_config.num_vars_to_drop
+            + config.model_config.cat_vars_to_drop,
+            inplace=True,
+        )
     except Exception as err:
         print(err)
-
-    # Drop unnecessary variables
-    data.drop(
-        columns=config.model_config.num_vars_to_drop
-        + config.model_config.cat_vars_to_drop,
-        inplace=True,
-    )
-    print(f"The shape of the data: {data.shape}\n")
+        
     return data
 
 
