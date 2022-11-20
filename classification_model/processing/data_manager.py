@@ -27,17 +27,9 @@ def load_data(
         The format of the input data. It can be 'csv' or 'excel'.
     sheet_name: Union[str, int, None], default=0
         The name of the excel sheet.
-    delimiter: Union[str, None] default=None
-        Delimiter to use. If sep is None, the C engine cannot automatically detect
-    the separator, but the Python parsing engine can, meaning the latter will
-    be used and automatically detect the separator by Python's builtin sniffer tool
+    delimiter: Union[str, None], default=None
+        The delimiter to use. 
     low_memory : bool, default=True
-        Internally process the file in chunks, resulting in lower memory use
-        while parsing, but possibly mixed type inference.  To ensure no mixed
-        types either set False, or specify the type with the `dtype` parameter.
-        Note that the entire file is read into a single DataFrame regardless,
-        use the `chunksize` or `iterator` parameter to return the data in chunks.
-        (Only valid with C parser).
 
     Returns:
     --------
@@ -60,10 +52,15 @@ def load_data(
         "Does not meet the credit policy. Status:Charged Off",
     ]
 
-    # Convert the loan_status to int
-    data[config.model_config.target] = data[config.model_config.target].apply(
-        lambda status: 1 if status in default_list else 0
-    )
+    try:
+        # Convert the loan_status to int
+        data[config.model_config.target] = data[config.model_config.target].apply(
+            lambda status: 1 if status in default_list else 0
+        )
+    except Exception as err:
+        print(err)
+
+    # Drop unnecessary variables
     data.drop(
         columns=config.model_config.num_vars_to_drop
         + config.model_config.cat_vars_to_drop,
@@ -82,7 +79,7 @@ def save_pipeline(*, pipeline_to_persist: Pipeline) -> None:
     """
 
     # Prepare versioned save file name
-    save_file_name = f"{config.app_config.pipeline_save_file}{_version}.pkl"
+    save_file_name = f"{config.app_config.pipeline_save_file}{_version}.joblib"
     save_path = TRAINED_MODEL_DIR / save_file_name
 
     remove_old_pipelines(files_to_keep=[save_file_name])
