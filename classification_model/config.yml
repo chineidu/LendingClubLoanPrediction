@@ -4,6 +4,7 @@ package_name: classification_model
 # Data Files
 training_data_file: train.csv
 test_data_file: test.csv
+sample_train_data_file: sample_train_data.csv
 csv_format: csv
 
 # Set train/test split
