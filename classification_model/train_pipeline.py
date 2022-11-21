@@ -15,7 +15,7 @@ def run_training() -> None:
     data = load_data(
         filepath=config.app_config.training_data_file,
         format_=config.model_config.csv_format,
-        low_memory=False,
+        is_train=True,
     )
     # divide train and test
     X_train, X_test, y_train, y_test = train_test_split(

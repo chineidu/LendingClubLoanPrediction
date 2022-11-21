@@ -15,32 +15,29 @@ def load_data(
     format_: str = "csv",
     sheet_name: tp.Union[str, int, None] = 0,
     delimiter: tp.Union[str, None] = None,
-    low_memory: bool = True,
+    is_train: bool = True,
 ) -> pd.DataFrame:
     """This is used to load csv or excel data.
 
     Params:
     -------
-    filepath: str
-        The filepath to the input data.
-    format_: str, default=csv
-        The format of the input data. It can be 'csv' or 'excel'.
-    sheet_name: Union[str, int, None], default=0
-        The name of the excel sheet.
-    delimiter: Union[str, None], default=None
-        The delimiter to use.
-    low_memory : bool, default=True
+    filepath (str): The filepath to the input data.
+    format_ (str, default=csv): The format of the input data. It can be 'csv' or 'excel'.
+    sheet_name (Union[str, int, None], default=0): The name of the excel sheet.
+    delimiter (Union[str, None], default=None): The delimiter to use.
+    is_train (bool, default=True): True if the data is the train_data otherwise False
 
     Returns:
     --------
     data: Pandas DF
         A DF containing the loaded input data.
     """
+    low_memory = False
     data = (
         pd.read_csv(
             filepath_or_buffer=Path(f"{DATASET_DIR}/{filepath}"),
-            delimiter=delimiter,
             low_memory=low_memory,
+            delimiter=delimiter,
         )
         if format_ == config.model_config.csv_format
         else pd.read_excel(io=filepath, sheet_name=sheet_name)  # if format_ == 'excel'
@@ -52,7 +49,7 @@ def load_data(
         "Does not meet the credit policy. Status:Charged Off",
     ]
 
-    try:
+    if is_train:
         # Convert the loan_status to int
         data[config.model_config.target] = data[config.model_config.target].apply(
             lambda status: 1 if status in default_list else 0
@@ -63,9 +60,7 @@ def load_data(
             + config.model_config.cat_vars_to_drop,
             inplace=True,
         )
-    except Exception as err:
-        print(err)
-        
+
     return data
 
 
