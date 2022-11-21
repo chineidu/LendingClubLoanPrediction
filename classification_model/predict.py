@@ -52,5 +52,5 @@ def make_predictions(*, input_data: pd.DataFrame) -> tp.Dict:
 
 
 if __name__ == "__main__":
-    test_data = load_data(filepath=config.app_config.test_data_file)
+    test_data = load_data(filepath=config.app_config.test_data_file, is_train=False)
     result = make_predictions(input_data=test_data)
