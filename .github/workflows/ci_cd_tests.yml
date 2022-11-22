@@ -4,7 +4,7 @@ on:
   push:
     branches: [ $default-branch, "staging" ]
   pull_request:
-    branches: [ $default-branch , "staging"]
+    branches: [ $default-branch , "staging" ]
 
 jobs:
   test:
