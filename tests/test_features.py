@@ -1,4 +1,5 @@
 import numpy as np
+import pytest
 
 # Feature engineering
 from feature_engine.imputation import (
@@ -14,6 +15,8 @@ from feature_engine.encoding import (
 
 from classification_model.processing.preprocess import Mapper
 from classification_model.config.core import config
+
+[100, 1_000, 2_000, -100]
 
 
 def test_mappings_transformer(sample_test_input_data):
@@ -138,7 +141,7 @@ def test_categorical_encoder_transformer(sample_train_input_data):
     # The encoded variables
     trans_df[variables].iloc[:2].to_dict(orient="records") == expected_trans_result
 
-
+@pytest.mark.filterwarnings("ignore::UserWarning")
 def test_rare_label_encoder_transformer(sample_train_input_data):
     """This tests the feature(s) generated using the RareLabelEncoder transformer."""
     # Given
@@ -207,3 +210,22 @@ def test_median_imputer_transformer(sample_train_input_data):
 
     # Then
     result[variables].isna().sum().to_dict() == expected_trans_result
+
+import warnings
+
+@pytest.mark.filterwarnings("ignore::RuntimeWarning")
+@pytest.mark.parametrize(
+    ("input", "expected"),
+    [(100, 4.6052), (1_000, 6.9078), (2_000, 7.6009), (-100, np.nan)],
+)
+def test_log_transform(input, expected):
+    """This tests the logarithm transformations."""
+    # Given
+
+    # When
+    result = round(np.log(input), 4)
+    # Then
+    if not np.isnan(result):
+        assert result == expected
+    else:
+        np.isnan(result)
