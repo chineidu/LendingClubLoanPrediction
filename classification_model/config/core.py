@@ -1,12 +1,10 @@
 """This module is used to parse and convert the YAML configuration to Python code."""
 
-from pathlib import Path
 import typing as tp
+from pathlib import Path
 
 from pydantic import BaseModel
 from strictyaml import YAML, load
-
-
 
 import classification_model
 
@@ -16,6 +14,7 @@ ROOT = PACKAGE_ROOT.parent
 CONFIG_FILE_PATH = PACKAGE_ROOT / "config.yml"
 DATASET_DIR = PACKAGE_ROOT / "datasets"
 TRAINED_MODEL_DIR = PACKAGE_ROOT / "trained_models"
+
 
 class AppConfig(BaseModel):
     """
@@ -80,7 +79,7 @@ def find_config_file() -> Path:
     raise Exception(f"Config not found at {CONFIG_FILE_PATH!r}")
 
 
-def fetch_config_from_yaml(cfg_path: Path = None) -> YAML:
+def fetch_config_from_yaml(cfg_path: tp.Union[Path, None] = None) -> YAML:
     """Parse and load YAML containing the package configuration.
 
     Params:

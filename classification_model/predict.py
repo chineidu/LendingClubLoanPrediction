@@ -1,15 +1,15 @@
-import numpy as np
+# Builtin modules/packages
+import typing as tp
+
 import pandas as pd
+
+from classification_model import __version__ as _version
 
 # Custom Imports
 from classification_model.config.core import config
+from classification_model.processing.data_manager import load_data, load_pipeline
 from classification_model.processing.validate import validate_inputs
-from classification_model.processing.data_manager import load_pipeline
-from classification_model.processing.data_manager import load_data
-from classification_model import __version__ as _version
 
-# Builtin modules/packages
-import typing as tp
 
 def make_predictions(*, input_data: pd.DataFrame) -> tp.Dict:
     """This is used to calculate the probability of default and the

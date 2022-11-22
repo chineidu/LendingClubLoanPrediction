@@ -4,3 +4,5 @@ train.csv
 .DS_Store
 __pycache__
 *.ipynb_checkpoints
+dist
+lcd_classification_model.egg-info

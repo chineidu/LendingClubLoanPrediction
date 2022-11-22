@@ -1,8 +1,8 @@
+import typing as tp
+
 import numpy as np
 
 from classification_model.predict import make_predictions
-
-import typing as tp
 
 
 def test_predictions(sample_test_input_data):
@@ -15,7 +15,7 @@ def test_predictions(sample_test_input_data):
     pred_proba = result.get("default_probability")[:10]
 
     # Then
-    assert result.get("errors") == None
+    assert result.get("errors") is None
     assert isinstance(pred_proba, tp.List)
     assert isinstance(result, tp.Dict)
     assert len(result.get("default_probability")) == expected_data_size

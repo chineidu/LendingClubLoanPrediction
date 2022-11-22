@@ -1,13 +1,12 @@
+# Builtin modules/packages
+import typing as tp
+
 import numpy as np
 import pandas as pd
 from pydantic import BaseModel, ValidationError
 
-
 # Custom Imports
 from classification_model.config.core import config
-
-# Builtin modules/packages
-import typing as tp
 
 
 def drop_na_inputs(*, input_data: pd.DataFrame) -> pd.DataFrame:
@@ -43,7 +42,9 @@ def drop_na_inputs(*, input_data: pd.DataFrame) -> pd.DataFrame:
     return cleaned_data
 
 
-def validate_inputs(*, input_data: pd.DataFrame) -> tp.Tuple[pd.DataFrame, tp.Dict]:
+def validate_inputs(
+    *, input_data: pd.DataFrame
+) -> tp.Tuple[pd.DataFrame, tp.Dict[tp.Union[None, str], tp.Union[None, str]]]:
     """This is used to validate the input_data using a Pydantic Schema.
 
     Params:

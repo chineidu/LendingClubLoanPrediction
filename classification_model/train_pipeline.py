@@ -1,6 +1,3 @@
-# 3rd party librarie(s)
-import numpy as np
-
 # Custom modules
 from config.core import config
 from pipeline import logistic_pipe

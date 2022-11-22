@@ -1,9 +1,8 @@
 """This module contains helper classes used for preprocessing."""
 
-import pandas as pd
-from sklearn.base import BaseEstimator, TransformerMixin
-
 import typing as tp
+
+from sklearn.base import BaseEstimator, TransformerMixin
 
 
 class Mapper(BaseEstimator, TransformerMixin):
@@ -24,7 +23,6 @@ class Mapper(BaseEstimator, TransformerMixin):
     fit: Needed to accomodate the sklearn pipeline.
     transform: Map the variables.
     fit_transform: Fit and transform the data.
-
     """
 
     def __init__(self, *, variables: tp.List, mappings: tp.Dict):
@@ -67,4 +65,3 @@ class Mapper(BaseEstimator, TransformerMixin):
             X[feature] = X[feature].map(self.mappings_)
 
         return X
-    

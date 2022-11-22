@@ -1,24 +1,19 @@
-from sklearn.preprocessing import StandardScaler
-
-# ML Algos
-from sklearn.linear_model import LogisticRegression
-
+from feature_engine.discretisation import EqualFrequencyDiscretiser
 from feature_engine.encoding import OrdinalEncoder, RareLabelEncoder
 from feature_engine.imputation import (
     AddMissingIndicator,
     CategoricalImputer,
     MeanMedianImputer,
 )
-from feature_engine.transformation import (
-    LogTransformer,
-    YeoJohnsonTransformer,
-)
-from feature_engine.discretisation import EqualFrequencyDiscretiser
+from feature_engine.transformation import LogTransformer, YeoJohnsonTransformer
+
+# ML Algos
+from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 
 from classification_model.config.core import config
 from classification_model.processing import preprocess as pp
-
 
 logistic_pipe = Pipeline(
     steps=[

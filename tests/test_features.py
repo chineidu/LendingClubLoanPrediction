@@ -1,20 +1,16 @@
 import numpy as np
 import pytest
+from feature_engine.encoding import OrdinalEncoder, RareLabelEncoder
 
 # Feature engineering
 from feature_engine.imputation import (
     AddMissingIndicator,
-    MeanMedianImputer,
     CategoricalImputer,
+    MeanMedianImputer,
 )
 
-from feature_engine.encoding import (
-    RareLabelEncoder,
-    OrdinalEncoder,
-)
-
-from classification_model.processing.preprocess import Mapper
 from classification_model.config.core import config
+from classification_model.processing.preprocess import Mapper
 
 [100, 1_000, 2_000, -100]
 
@@ -141,6 +137,7 @@ def test_categorical_encoder_transformer(sample_train_input_data):
     # The encoded variables
     trans_df[variables].iloc[:2].to_dict(orient="records") == expected_trans_result
 
+
 @pytest.mark.filterwarnings("ignore::UserWarning")
 def test_rare_label_encoder_transformer(sample_train_input_data):
     """This tests the feature(s) generated using the RareLabelEncoder transformer."""
@@ -211,7 +208,6 @@ def test_median_imputer_transformer(sample_train_input_data):
     # Then
     result[variables].isna().sum().to_dict() == expected_trans_result
 
-import warnings
 
 @pytest.mark.filterwarnings("ignore::RuntimeWarning")
 @pytest.mark.parametrize(
