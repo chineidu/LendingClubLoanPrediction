@@ -41,14 +41,14 @@ class Mapper(BaseEstimator, TransformerMixin):
     def mappings(self):
         return self.mappings_
 
-    @variables.setter
+    @variables.setter  # type: ignore
     def variables(self, value: tp.List):
         if isinstance(value, tp.List):
             self.variables_ = value
         else:
             raise Exception(f"{value} must be a list")
 
-    @mappings.setter
+    @mappings.setter  # type: ignore
     def mappings(self, value: tp.Dict):
         if isinstance(value, tp.Dict):
             self.mappings_ = value

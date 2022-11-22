@@ -21,8 +21,8 @@ def make_predictions(*, input_data: pd.DataFrame) -> tp.Dict:
 
     Returns:
     --------
-    results (Dict): A dict containing the probability of default, default_status,
-        model_version and the possible errors.
+    results (Dict): A dict containing the probability of default,
+            default_status, model_version and the possible errors.
     """
     input_data = input_data.copy()
     file_name = f"{config.app_config.pipeline_save_file}{_version}.joblib"
@@ -38,13 +38,13 @@ def make_predictions(*, input_data: pd.DataFrame) -> tp.Dict:
 
     if not errors:
         default_status = list(logistic_pipe.predict(validated_data))
-        default_status = [*map(lambda x: "Yes" if x == 1 else "No", default_status)]
+        default_status = list(map(lambda x: "Yes" if x == 1 else "No", default_status))
         pred_proba = list(logistic_pipe.predict_proba(validated_data)[:, 1])
         pred_proba = [round(val, 3) for val in pred_proba]  # Round the values
 
         result = {
-            "default_probability": pred_proba,
-            "default_status": default_status,
+            "default_probability": pred_proba,  # type: ignore
+            "default_status": default_status,  # type: ignore
             "model_version": _version,
             "errors": errors,
         }
@@ -52,5 +52,8 @@ def make_predictions(*, input_data: pd.DataFrame) -> tp.Dict:
 
 
 if __name__ == "__main__":
-    test_data = load_data(filepath=config.app_config.test_data_file, is_train=False)
+    test_data = load_data(
+        filepath=config.app_config.test_data_file,
+        is_train=False,
+    )
     result = make_predictions(input_data=test_data)
