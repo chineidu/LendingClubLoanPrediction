@@ -44,7 +44,7 @@ def drop_na_inputs(*, input_data: pd.DataFrame) -> pd.DataFrame:
 
 def validate_inputs(
     *, input_data: pd.DataFrame
-) -> tp.Tuple[pd.DataFrame, tp.Dict[tp.Union[None, str], tp.Union[None, str]]]:
+) -> tp.Tuple[pd.DataFrame, tp.Optional[dict]]:
     """This is used to validate the input_data using a Pydantic Schema.
 
     Params:
