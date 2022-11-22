@@ -26,3 +26,5 @@ jobs:
         pip install tox tox-gh-actions
     - name: Test with tox
       run: tox
+    - name: Final Step
+      run: echo 'Tests Successful!'
