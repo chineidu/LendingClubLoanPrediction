@@ -68,7 +68,7 @@ features:
   - total_rec_late_fee
   - total_rev_hi_lim
   - verification_status
-  - zip_code
+  # - zip_code
 
 num_vars_to_drop:
   - annual_inc_joint
