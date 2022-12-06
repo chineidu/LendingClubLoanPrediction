@@ -98,6 +98,7 @@ cat_vars_to_drop:
   - sub_grade
   - title
   - verification_status_joint
+  - zip_code
 
 # Numerical variables with NA in train set
 numerical_vars_with_na:
@@ -264,7 +265,7 @@ continuous_vars:
   - total_rec_int
   - total_rec_late_fee
   - total_rev_hi_lim
- 
+
 discrete_vars:
   - acc_now_delinq
   - collections_12_mths_ex_med
@@ -280,7 +281,7 @@ var_with_rare_labels:
   - open_il_12m
   - purpose
   # - zip_code
- 
+
 categorical_vars:
   - addr_state
   - application_type
