@@ -5,6 +5,7 @@
 # updates/fixes, whilst ensuring we don't install a major 
 # update which could introduce backwards incompatible changes.
 
+build
 category-encoders==2.5.1.post0
 feature-engine>=1.5.1,<1.6.0
 numpy>=1.22.2,<1.23.0
