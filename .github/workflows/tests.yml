@@ -29,30 +29,19 @@ jobs:
     - name: Final Step
       run: echo 'Tests Successful!'
 
-  experiment:
-    runs-on: ubuntu-latest
-    environment: DEV
-    steps:
-      - uses: actions/checkout@v2
-      - name: Display Some Env Variables
-        uses: actions/checkout@v2
-
-      - run: |
-          echo some SECRET: ${{ secrets.GH_TOKEN }}
-
-  publish:
-    needs: test
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    environment: DEV
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-        token: ${{ secrets.GH_TOKEN }}
-    - name: Use Python Semantic Release to prepare Release
-      uses: relekang/python-semantic-release@master
-      with:
-        github_token: ${{ secrets.GH_TOKEN }}
-        repository_username: __token__
-        repository_password: ${{ secrets.PYPI_ACCESS_TOKEN }} 
+  # publish:
+  #   needs: test
+  #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+  #   runs-on: ubuntu-latest
+  #   environment: DEV
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #     with:
+  #       fetch-depth: 0
+  #       token: ${{ secrets.GH_TOKEN }}
+  #   - name: Use Python Semantic Release to prepare Release
+  #     uses: relekang/python-semantic-release@master
+  #     with:
+  #       github_token: ${{ secrets.GH_TOKEN }}
+  #       repository_username: __token__
+  #       repository_password: ${{ secrets.PYPI_ACCESS_TOKEN }} 
