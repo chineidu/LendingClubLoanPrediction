@@ -21,6 +21,7 @@ pipeline_name: classification_model
 pipeline_save_file: classification_model_output_v
 
 target: loan_status
+zip_code: zip_code
 
 features:
   - acc_now_delinq
@@ -68,7 +69,6 @@ features:
   - total_rec_late_fee
   - total_rev_hi_lim
   - verification_status
-  # - zip_code
 
 num_vars_to_drop:
   - annual_inc_joint
@@ -122,7 +122,6 @@ numerical_vars_with_na:
 
 categorical_vars_with_na_frequent:
   - emp_length
-  # - zip_code
 
 repl_vars_with_median:
   - all_util
@@ -280,7 +279,6 @@ var_with_rare_labels:
   - open_acc_6m
   - open_il_12m
   - purpose
-  # - zip_code
 
 categorical_vars:
   - addr_state
@@ -292,4 +290,3 @@ categorical_vars:
   - purpose
   - term
   - verification_status
-  # - zip_code
