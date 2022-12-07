@@ -29,6 +29,15 @@ jobs:
     - name: Final Step
       run: echo 'Tests Successful!'
 
+  experiment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Display Some Env Variables
+        uses: actions/checkout@v2
+      - run: |
+          echo ${{ ecrets.GH_TOKEN }}
+
   publish:
     needs: test
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
