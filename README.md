@@ -1,5 +1,6 @@
 ![Tests](https://github.com/chineidu/LendingClubLoanPrediction/actions/workflows/tests.yml/badge.svg)
 ![PyPi](https://img.shields.io/pypi/v/lcd-classification-model?color=green&style=plastic)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/Chineidu/LendingClubLoanPrediction/main?style=for-the-badge)
 
 # LendingClubLoanPrediction
 This repo contains the code used to build a predictive model which can be used to classify loan applicants as "Default" or "Non-default".
