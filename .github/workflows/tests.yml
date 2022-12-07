@@ -43,18 +43,13 @@ jobs:
   publish:
     needs: test
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        python-version: ['3.10']
+    runs-on: ubuntu-latest
     environment: DEV
     steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
         token: ${{ secrets.GH_TOKEN }}
-
     - name: Use Python Semantic Release to prepare Release
       uses: relekang/python-semantic-release@master
       with:
