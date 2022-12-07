@@ -38,6 +38,7 @@ class ModelConfig(BaseModel):
     random_state: int
     na_thresh: int
     target: str
+    zip_code: str
     features: tp.List[str]
     num_vars_to_drop: tp.List[str]
     cat_vars_to_drop: tp.List[str]
