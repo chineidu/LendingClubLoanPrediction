@@ -2,8 +2,8 @@
 from config.core import config
 from pipeline import logistic_pipe
 from processing.data_manager import load_data, save_pipeline
-from sklearn.model_selection import train_test_split
 from sklearn import metrics
+from sklearn.model_selection import train_test_split
 
 
 def run_training() -> None:

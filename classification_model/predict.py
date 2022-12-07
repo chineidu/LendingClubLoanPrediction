@@ -7,7 +7,7 @@ from classification_model import __version__ as _version
 
 # Custom Imports
 from classification_model.config.core import config
-from classification_model.processing.data_manager import load_data, load_pipeline
+from classification_model.processing.data_manager import load_pipeline
 from classification_model.processing.validate import validate_inputs
 
 
@@ -49,5 +49,3 @@ def make_predictions(*, input_data: pd.DataFrame) -> tp.Dict:
             "errors": errors,
         }
     return result
-
-

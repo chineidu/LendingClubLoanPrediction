@@ -9,7 +9,7 @@ from classification_model.processing.data_manager import load_data
 def sample_test_input_data() -> pd.DataFrame:
     """This returns the test data as a DF for testing."""
     data = load_data(filepath=config.app_config.test_data_file, is_train=False)
-    data = data.drop(columns=["zip_code"])
+    data = data.drop(columns=[config.model_config.zip_code])
     return data
 
 

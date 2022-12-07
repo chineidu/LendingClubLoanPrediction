@@ -1,5 +1,5 @@
 ![Tests](https://github.com/chineidu/LendingClubLoanPrediction/actions/workflows/tests.yml/badge.svg)
-![PyPi](https://img.shields.io/pypi/v/lcd-classification-model?color=green&style=plastic)
+![PyPI](https://img.shields.io/pypi/v/lcd-classification-model)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/Chineidu/LendingClubLoanPrediction/main?style=plastic)
 
 # LendingClubLoanPrediction
