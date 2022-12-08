@@ -22,26 +22,26 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install tox tox-gh-actions build twine
+        pip install tox tox-gh-actions build
         python3 --version
     - name: Test with tox
       run: tox
     - name: Final Step
       run: echo 'Tests Successful!'
 
-  # publish:
-  #   needs: test
-  #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-  #   runs-on: ubuntu-latest
-  #   environment: DEV
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #     with:
-  #       fetch-depth: 0
-  #       token: ${{ secrets.GH_TOKEN }}
-  #   - name: Use Python Semantic Release to prepare Release
-  #     uses: relekang/python-semantic-release@master
-  #     with:
-  #       github_token: ${{ secrets.GH_TOKEN }}
-  #       repository_username: __token__
-  #       repository_password: ${{ secrets.PYPI_ACCESS_TOKEN }} 
+  publish:
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: DEV
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GH_TOKEN }}
+    - name: Use Python Semantic Release to prepare Release
+      uses: relekang/python-semantic-release@master
+      with:
+        github_token: ${{ secrets.GH_TOKEN }}
+        repository_username: __token__
+        repository_password: ${{ secrets.PYPI_ACCESS_TOKEN }} 
